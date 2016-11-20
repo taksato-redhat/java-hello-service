@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>local.hello</groupId>
+		<artifactId>hello-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<artifactId>hello-ear</artifactId>
+	<packaging>ear</packaging>
+	<name>OpenShift Demo - ${project.artifactId}</name>
+	<!-- ================================================================== -->
+	<!-- Properties -->
+	<!-- ================================================================== -->
+	<properties>
+		<ear.finalName>hello-${project.parent.version}-${environment.id}</ear.finalName>
+		<ear.displayName>${project.artifactId}</ear.displayName>
+		<ear.webModule.contextRoot>hello</ear.webModule.contextRoot>
+	</properties>
+	<!-- ================================================================== -->
+	<!-- Build Definitions -->
+	<!-- ================================================================== -->
+	<build>
+		<finalName>${ear.finalName}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>${version.maven.ear.plugin}</version>
+				<configuration>
+					<version>6</version>
+					<displayName>${ear.displayName}</displayName>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<earSourceDirectory>${basedir}/src/main</earSourceDirectory>
+					<modules>
+						<ejbModule>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>hello-service</artifactId>
+							<bundleDir>/</bundleDir>
+						</ejbModule>
+						<webModule>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>hello-web</artifactId>
+							<contextRoot>${ear.webModule.contextRoot}</contextRoot>
+							<bundleFileName>hello-web-${project.parent.version}.war</bundleFileName>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>${version.org.wildfly.plugin}</version>
+			</plugin>
+		</plugins>
+	</build>
+	<!-- ================================================================== -->
+	<!-- Build Dependency Definitions -->
+	<!-- ================================================================== -->
+	<dependencies>
+		<!-- ============================================================== -->
+		<!-- Local Dependencies -->
+		<!-- ============================================================== -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>hello-service</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>hello-web</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+</project>
