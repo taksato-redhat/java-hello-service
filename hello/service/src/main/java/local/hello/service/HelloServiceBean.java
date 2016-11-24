@@ -7,7 +7,7 @@ public class HelloServiceBean implements HelloService {
 
 	@Override
 	public String hello(String name) {
-		return "Hello " + name + "!";
+		return "Hello " + name + "! - V2";
 	}
 
 }
