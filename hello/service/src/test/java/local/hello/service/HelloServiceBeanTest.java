@@ -11,5 +11,12 @@ public class HelloServiceBeanTest {
 		String name = "Mike";
 		Assert.assertEquals("Verify hello method result.", "Hello Mike!", service.hello(name));
 	}
+	
+	@Test
+	public void testBye() {
+		HelloServiceBean service = new HelloServiceBean();
+		String name = "Mike";
+		Assert.assertEquals("Verify bye method result.", "Bye Mike!", service.bye(name));
+	}
 
 }

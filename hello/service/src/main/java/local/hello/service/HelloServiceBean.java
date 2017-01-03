@@ -10,4 +10,9 @@ public class HelloServiceBean implements HelloService {
 		return "Hello " + name + "!";
 	}
 
+	@Override
+	public String bye(String name) {
+		return "Bye " + name + "!";
+	}
+
 }
