@@ -95,5 +95,19 @@
 			</plugins>
 		    </build>
 		</profile>
+		<profile>
+		    <id>jenkins</id>
+		    <build>
+			<plugins>
+			    <plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>${version.ear.plugin}</version>
+				<configuration>
+				    <outputDirectory>oc-build/deployments</outputDirectory>
+				</configuration>
+			    </plugin>
+			</plugins>
+		    </build>
+		</profile>
         </profiles>
 </project>
