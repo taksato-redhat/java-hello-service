@@ -16,4 +16,9 @@ public class HelloResourceBean implements HelloResource {
 		return service.hello(name);
 	}
 
+	@Override
+	public String bye(String name) {
+		return service.bye(name);
+	}
+
 }

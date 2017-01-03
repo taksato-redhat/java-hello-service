@@ -9,5 +9,8 @@ public interface HelloResource {
 
 	@GET
 	String hello(@QueryParam("name") String name);
+	
+	@GET
+	String bye(@QueryParam("name") String name);
 
 }
