@@ -23,7 +23,7 @@ node {
              stage 'Deploy DEV'
              sh "${ocCmd} delete bc,dc,svc,route -l app=java-hello-service -n dev"
              // create build. override the exit code since it complains about exising imagestream
-             sh "${ocCmd} new-build --name=java-hello-service --image-stream=jboss-eap70-openshift --binary=true --labels=app=java-hello-service -n dev || true"
+             sh "${ocCmd} new-build --name=java-hello-service --image-stream=jboss-wildfly101 --binary=true --labels=app=java-hello-service -n dev || true"
              // build image
              sh "${ocCmd} start-build java-hello-service --from-dir=oc-build --wait=true -n dev"
              // deploy image
