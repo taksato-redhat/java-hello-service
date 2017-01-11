@@ -1,4 +1,5 @@
 node {
+// test for SCM polling
              // define commands
              def ocCmd = "/opt/ocp/bin/oc --token=`cat /var/run/secrets/kubernetes.io/serviceaccount/token` --server=https://master1-5f26.oslab.opentlc.com --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
              def mvnHome = tool 'M3'
