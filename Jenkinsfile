@@ -1,14 +1,13 @@
 node {
-// test for SCM polling
              // define commands
-             def ocCmd = "/opt/ocp/bin/oc --token=`cat /var/run/secrets/kubernetes.io/serviceaccount/token` --server=https://master1-5f26.oslab.opentlc.com --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+             def ocCmd = "/opt/ocp/bin/oc --token=`cat /opt/ocp/security/token` --server=https://master1-c8f8.oslab.opentlc.com --certificate-authority=/opt/ocp/security/ca.crt"
              def mvnHome = tool 'M3'
              def mvnCmd = "${mvnHome}/bin/mvn"
             
              stage 'Build'
              git branch: 'master', url: 'https://github.com/taksato-redhat/java-hello-service.git'
              def v = version()
-             sh "${mvnCmd} clean package -P jenkins"
+             sh "${mvnCmd} clean install -P jenkins -DskipTests=true"
              
              stage 'Test and Analysis'
              parallel (
@@ -22,14 +21,14 @@ node {
              )
              
              stage 'Deploy DEV'
-             sh "${ocCmd} delete bc,dc,svc,route -l app=java-hello-service -n dev"
+             sh "${ocCmd} delete bc,dc,svc,route -l app=java-hello-service -n java-hello-service-dev"
              // create build. override the exit code since it complains about exising imagestream
-             sh "${ocCmd} new-build --name=java-hello-service --image-stream=jboss-wildfly101 --binary=true --labels=app=java-hello-service -n dev || true"
+             sh "${ocCmd} new-build --name=java-hello-service --image-stream=jboss-wildfly101 --binary=true --labels=app=java-hello-service -n java-hello-service-dev || true"
              // build image
-             sh "${ocCmd} start-build java-hello-service --from-dir=oc-build --wait=true -n dev"
+             sh "${ocCmd} start-build java-hello-service --from-file=deployments/*.ear --wait=true -n java-hello-service-dev"
              // deploy image
-             sh "${ocCmd} new-app java-hello-service:latest -n dev"
-             sh "${ocCmd} expose svc/java-hello-service -n dev"
+             sh "${ocCmd} new-app java-hello-service:latest -n java-hello-service-dev"
+             sh "${ocCmd} expose svc/java-hello-service -n java-hello-service-dev"
 }
 
 def version() {
