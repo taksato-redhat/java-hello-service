@@ -31,7 +31,7 @@ node {
              sh "${ocCmd} new-build --name=java-hello-service --image-stream=wildfly-101-centos7 --binary=true --labels=app=java-hello-service -n ${prjName} || true"
 
              // build image
-             sh "${ocCmd} start-build java-hello-service --from-file=deployments/*.ear --wait=true -n ${prjName}"
+             sh "${ocCmd} start-build java-hello-service --from-file=./deployments/hello-1.0.0-SNAPSHOT-dev.ear --wait=true -n ${prjName}"
 
              // deploy image
              sh "${ocCmd} new-app java-hello-service:latest -n ${prjName}"
