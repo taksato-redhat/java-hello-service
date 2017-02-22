@@ -4,6 +4,8 @@ node {
              def mvnHome = tool 'M3'
              def mvnCmd = "${mvnHome}/bin/mvn"
 
+             def prjName = "java-hello-service-dev"
+
              sh "${ocCmd} login -u redhat -p password --server=https://master1-c8f8.oslab.opentlc.com --insecure-skip-tls-verify=true"
             
              stage 'Build'
@@ -23,14 +25,17 @@ node {
              )
              
              stage 'Deploy DEV'
-             sh "${ocCmd} delete bc,dc,svc,route -l app=java-hello-service -n java-hello-service-dev"
+             sh "${ocCmd} delete bc,dc,svc,route -l app=java-hello-service -n ${prjName}"
+
              // create build. override the exit code since it complains about exising imagestream
-             sh "${ocCmd} new-build --name=java-hello-service --image-stream=wildfly-101-centos7 --binary=true --labels=app=java-hello-service -n java-hello-service-dev || true"
+             sh "${ocCmd} new-build --name=java-hello-service --image-stream=wildfly-101-centos7 --binary=true --labels=app=java-hello-service -n ${prjName} || true"
+
              // build image
-             sh "${ocCmd} start-build java-hello-service --from-file=deployments/*.ear --wait=true -n java-hello-service-dev"
+             sh "${ocCmd} start-build java-hello-service --from-file=deployments/*.ear --wait=true -n ${prjName}"
+
              // deploy image
-             sh "${ocCmd} new-app java-hello-service:latest -n java-hello-service-dev"
-             sh "${ocCmd} expose svc/java-hello-service -n java-hello-service-dev"
+             sh "${ocCmd} new-app java-hello-service:latest -n ${prjName}"
+             sh "${ocCmd} expose svc/java-hello-service -n ${prjName}"
 }
 
 def version() {
