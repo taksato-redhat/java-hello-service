@@ -25,7 +25,7 @@ node {
              stage 'Deploy DEV'
              sh "${ocCmd} delete bc,dc,svc,route -l app=java-hello-service -n java-hello-service-dev"
              // create build. override the exit code since it complains about exising imagestream
-             sh "${ocCmd} new-build --name=java-hello-service --image-stream=jboss-wildfly101 --binary=true --labels=app=java-hello-service -n java-hello-service-dev || true"
+             sh "${ocCmd} new-build --name=java-hello-service --image-stream=wildfly-101-centos7 --binary=true --labels=app=java-hello-service -n java-hello-service-dev || true"
              // build image
              sh "${ocCmd} start-build java-hello-service --from-file=deployments/*.ear --wait=true -n java-hello-service-dev"
              // deploy image
