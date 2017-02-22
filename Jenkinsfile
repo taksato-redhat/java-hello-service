@@ -1,13 +1,15 @@
 node {
              // define commands
-             def ocCmd = "/opt/ocp/bin/oc --token=`cat /opt/ocp/security/token` --server=https://master1-c8f8.oslab.opentlc.com --certificate-authority=/opt/ocp/security/ca.crt"
+             def ocCmd = "/opt/ocp/bin/oc"
              def mvnHome = tool 'M3'
              def mvnCmd = "${mvnHome}/bin/mvn"
+
+             sh "${ocCmd} login -u redhat -p password --server=https://master1-c8f8.oslab.opentlc.com --insecure-skip-tls-verify=true"
             
              stage 'Build'
              git branch: 'master', url: 'https://github.com/taksato-redhat/java-hello-service.git'
              def v = version()
-             sh "${mvnCmd} clean install -P jenkins -DskipTests=true"
+             sh "${mvnCmd} clean install -P openshift -DskipTests=true"
              
              stage 'Test and Analysis'
              parallel (
