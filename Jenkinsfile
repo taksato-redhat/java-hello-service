@@ -1,6 +1,7 @@
 node('maven') {
              // define commands
-             def ocCmd = "/opt/ocp/bin/oc"
+             //def ocCmd = "/opt/ocp/bin/oc"
+             def ocCmd = "oc"
              //def mvnHome = tool 'M3'
              //def mvnCmd = "${mvnHome}/bin/mvn"
              def mvnCmd = "mvn"
