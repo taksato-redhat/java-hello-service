@@ -1,4 +1,4 @@
-node {
+node('maven') {
              // define commands
              def ocCmd = "/opt/ocp/bin/oc"
              def mvnHome = tool 'M3'
