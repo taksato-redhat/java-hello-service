@@ -22,7 +22,7 @@ node('maven') {
                      step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
                  },
                  'Static Analysis': {
-                     sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://localhost:9000 -DskipTests=true"
+                     sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -DskipTests=true"
                  }
              )
              
