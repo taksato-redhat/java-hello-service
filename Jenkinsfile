@@ -1,4 +1,4 @@
-node('maven') {
+node() {
              // define commands
              //def ocCmd = "/opt/ocp/bin/oc"
              def ocCmd = "oc"
