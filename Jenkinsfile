@@ -8,7 +8,7 @@ node('maven') {
 
              def prjName = "java-hello-service-dev"
 
-             sh "${ocCmd} login -u devops -p RedHat2017 --server=https://ocp-master1.rhdevops.net --insecure-skip-tls-verify=true"
+             //sh "${ocCmd} login -u devops -p RedHat2017 --server=https://ocp-master1.rhdevops.net --insecure-skip-tls-verify=true"
             
              stage 'Build'
              git branch: 'master', url: 'https://github.com/taksato-redhat/java-hello-service.git'
