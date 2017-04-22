@@ -4,7 +4,7 @@ node('maven') {
              //def ocCmd = "oc"
              //def mvnHome = tool 'maven350'
              //def mvnCmd = "${mvnHome}/bin/mvn"
-             def mvnCmd = "mvn"
+             def mvnCmd = "/usr/bin/mvn"
 
              def prjName = "java-hello-service-dev"
 
