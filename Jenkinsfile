@@ -1,10 +1,10 @@
-node() {
+node('maven') {
              // define commands
              //def ocCmd = "/opt/ocp/bin/oc"
              def ocCmd = "oc"
              def mvnHome = tool 'maven350'
-             def mvnCmd = "${mvnHome}/bin/mvn"
-             //def mvnCmd = "mvn"
+             //def mvnCmd = "${mvnHome}/bin/mvn"
+             def mvnCmd = "mvn"
 
              def prjName = "java-hello-service-dev"
 
