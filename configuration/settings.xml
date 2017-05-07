@@ -123,18 +123,16 @@ under the License.
     </server>
     -->
 
-    <servers>
-      <server>
-        <id>snapshots</id>
-        <username>deployment</username>
-        <password>deployment123</password>
-      </server>
-      <server>
-        <id>releases</id>
-        <username>deployment</username>
-        <password>deployment123</password>
-      </server>
-    </servers>
+    <server>
+      <id>snapshots</id>
+      <username>deployment</username>
+      <password>deployment123</password>
+    </server>
+    <server>
+      <id>releases</id>
+      <username>deployment</username>
+      <password>deployment123</password>
+    </server>
 
     <!-- Another sample, using keys to authenticate.
     <server>
