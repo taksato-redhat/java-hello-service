@@ -4,7 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
-@Path("/hello")
+@Path("/hello-service")
 public interface HelloResource {
 
 	@GET
