@@ -124,12 +124,7 @@ under the License.
     -->
 
     <server>
-      <id>snapshots</id>
-      <username>deployment</username>
-      <password>deployment123</password>
-    </server>
-    <server>
-      <id>releases</id>
+      <id>nexus</id>
       <username>deployment</username>
       <password>deployment123</password>
     </server>
