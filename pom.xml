@@ -71,6 +71,10 @@
 			<name>Red Hat Tech Preview Maven Repository</name>
 			<url>http://maven.repository.redhat.com/techpreview/all/</url>
 		</repository>
+                <repository>
+                        <id>openshift-repository</id>
+                        <url>https://mirror.openshift.com/nexus/content/groups/public</url>
+                </repository>
 	</repositories>
 	<!-- ================================================================== -->
 	<!-- Optional Plugin Repositories -->
@@ -97,6 +101,19 @@
 			<url>http://maven.repository.redhat.com/techpreview/all/</url>
 		</pluginRepository>
 	</pluginRepositories>
+	<!-- ================================================================== -->
+	<!-- Dependency Management -->
+	<!-- ================================================================== -->
+        <distributionManagement>
+                <repository>
+                                <id>nexus</id>
+                                <url>http://nexus:8081/content/repositories/releases</url>
+                </repository>
+                <snapshotRepository>
+                                <id>nexus</id>
+                                <url>http://nexus:8081/content/repositories/snapshots</url>
+                </snapshotRepository>
+        </distributionManagement>
 	<!-- ================================================================== -->
 	<!-- Dependency Management -->
 	<!-- ================================================================== -->
