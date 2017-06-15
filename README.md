@@ -90,6 +90,8 @@ sonarqube-1-fe5hm              1/1       Running     2          4h
 
     パイプラインの実行が完了したらアプリケーションが表示されることを確認します。
 
+    http://java-hello-service-java-hello-service-dev.apps.rhdevops.net/hello/rs/hello-service/hello?name=RedHat
+
 ## CI/CD テンプレート概要
 
 [テンプレート](java-hello-service-template.yaml) には下記の OpenShift オブジェクト設定が含まれます。
