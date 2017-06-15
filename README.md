@@ -68,9 +68,7 @@ postgresql-sonarqube-1-73mgg   1/1       Running     1          4h
 sonarqube-1-fe5hm              1/1       Running     2          4h
 ```
 
-コンテナの状況は Web コンソールからも確認できます。コンテナがすべて起動したら構築は完了です。
-
-![](images/cicd-pod-status.png)
+コンテナがすべて起動したら構築は完了です。
 
 ## 検証手順
 
