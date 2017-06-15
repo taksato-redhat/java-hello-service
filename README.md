@@ -4,9 +4,9 @@
 
 ## 構成概要
 
-![](images/env.png)
+下記リポジトリで提供されているコンテナ構成をベースとしています。
 
-その他詳細は[ドキュメント](docs/OpenShiftPOC.pptx)を参照
+https://github.com/OpenShiftDemos/openshift-cd-demo
 
 ## 構築手順
 OpenShift にログインして CI/CD 環境構築用のシェルを実行します。
