@@ -702,14 +702,14 @@ objects:
       # import github repository
       cat <<EOF > /tmp/data.json
       {
-        "clone_addr": "https://github.com/taksato-redhat/java-hello-service.git",
-        "uid": 1,
-        "repo_name": "java-hello-service"
+        "name": "java-hello-service",
+        "description": "Java Hello Service",
+        "private": false
       }
       EOF
 
       RETURN=$(curl -o /dev/null -sL -w "%{http_code}" -H "Content-Type: application/json" \
-      -u gogs:$GOGS_PASSWORD -X POST http://$GOGSSVC:3000/api/v1/repos/migrate -d @/tmp/data.json)
+      -u gogs:$GOGS_PASSWORD -X POST http://$GOGSSVC:3000/api/v1/user/repos -d @/tmp/data.json)
 
       if [ $RETURN != "201" ]
       then
